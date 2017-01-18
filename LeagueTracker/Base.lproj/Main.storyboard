@@ -22,18 +22,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SWn-aZ-xzN" id="fZX-AU-lMc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8kC-gb-WK8">
-                                            <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="15" y="11" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pfc-Dr-Lld">
-                                            <rect key="frame" x="316" y="12" width="44" height="20.5"/>
+                                            <rect key="frame" x="316" y="11" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -115,7 +115,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5kQ-1D-H1s" id="6q9-Po-xTn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -334,6 +334,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUg-6l-gro">
                                         <rect key="frame" x="51" y="322" width="30" height="30"/>
                                         <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <action selector="editButton:" destination="s6c-wk-rES" eventType="touchUpInside" id="Q2i-BM-nFB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -351,6 +354,9 @@
                                 <rect key="frame" x="22" y="28" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButton:" destination="s6c-wk-rES" eventType="touchUpInside" id="dyh-PV-WKv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -359,6 +365,12 @@
                             <constraint firstItem="Nra-af-csK" firstAttribute="centerX" secondItem="UU4-fC-eNF" secondAttribute="centerX" id="z7N-q2-Igg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="team1ScoreTextField" destination="8cL-AC-D0R" id="C8U-KC-Z6n"/>
+                        <outlet property="team1TextField" destination="vhm-ik-vsA" id="chu-8z-wqS"/>
+                        <outlet property="team2ScoreTextField" destination="zxw-Qb-uDp" id="Fbv-la-juS"/>
+                        <outlet property="team2TextField" destination="fXQ-2h-6s7" id="p56-g7-lwl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7u-KT-RhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

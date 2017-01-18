@@ -22,7 +22,8 @@ enum FileError: Error{
 
 final class GameStore: NSObject {
     
-    var games: [Game] = [Game(team1: Team(name:"Jets", numberOfWins:3), team2: Team(name:"Tigers", numberOfWins: 2), team1Score: 4, team2Score: 7), Game(team1: Team(name:"Cats", numberOfWins:3), team2: Team(name:"Raiders", numberOfWins: 2), team1Score: 4, team2Score: 7)]
+    var games: [Game] = []
+    //[Game(team1: Team(name:"Jets", numberOfWins:3), team2: Team(name:"Tigers", numberOfWins: 2), team1Score: 4, team2Score: 7), Game(team1: Team(name:"Cats", numberOfWins:3), team2: Team(name:"Raiders", numberOfWins: 2), team1Score: 4, team2Score: 7)]
     var season: Season {
         return Season(games: games)
     }
@@ -123,7 +124,7 @@ extension GameStore: UITableViewDataSource {
         } else if tableView.tag == StandingViewController.tableViewTag {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StandingCell", for: indexPath)
             cell.textLabel?.text = "\(teams[indexPath.row].name)"
-            cell.detailTextLabel?.text = "Number Of Wins: \(teams[indexPath.row].numberOfWins)"
+            cell.detailTextLabel?.text = "Number Of Wins: \(teams[indexPath.row].record.wins)"
             return cell
         }
         

@@ -16,15 +16,26 @@ class Game: Equatable {
     var team2Score: Int
     var winner: Team? {
         if team1Score == team2Score {
+            team1.record.draw += 1
+            team2.record.draw += 1
             return nil
         } else if team1Score > team2Score {
+            team1.record.wins += 1
+            team2.record.loses += 1
             return team1
         } else {
+            team2.record.wins += 1
+            team1.record.loses += 1
             return team2
         }
     }
     
     init(team1: Team, team2 : Team, team1Score: Int, team2Score: Int){
+        guard team1 != team2,
+            team1Score >= 0,
+            team2Score >= 0 else {
+                fatalError()
+        }
         self.team1 = team1
         self.team2 = team2
         self.team1Score = team1Score
@@ -45,14 +56,6 @@ class Game: Equatable {
         
     }
     
-    func setWinner(){
-        if team1Score > team2Score{
-            team1.numberOfWins += 1
-        } else if team2Score > team1Score{
-            team2.numberOfWins += 1
-        }
-    }
-    
     
     
     func toDictionary() -> [String: Any] {
@@ -64,8 +67,6 @@ class Game: Equatable {
             ]
         return dictionary
     }
-    
-    
     
     
  

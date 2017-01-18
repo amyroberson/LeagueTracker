@@ -19,6 +19,8 @@
 		E10681081E2E972A006107D5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10681071E2E972A006107D5 /* Team.swift */; };
 		E106810A1E2E9F80006107D5 /* TeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10681091E2E9F80006107D5 /* TeamTests.swift */; };
 		E106810C1E2E9F8F006107D5 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106810B1E2E9F8F006107D5 /* GameTests.swift */; };
+		E10CA7761E2FAC5200E09B99 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CA7751E2FAC5200E09B99 /* RecordsViewController.swift */; };
+		E10CA7781E2FB4F600E09B99 /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CA7771E2FB4F600E09B99 /* Records.swift */; };
 		E1A032C61E2EB8D900F4FB7B /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032C51E2EB8D900F4FB7B /* GameStore.swift */; };
 		E1A032CA1E2ECF3700F4FB7B /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032C91E2ECF3700F4FB7B /* Season.swift */; };
 		E1A032CE1E2ED3C300F4FB7B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032CD1E2ED3C300F4FB7B /* TabBarController.swift */; };
@@ -62,6 +64,8 @@
 		E10681071E2E972A006107D5 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		E10681091E2E9F80006107D5 /* TeamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
 		E106810B1E2E9F8F006107D5 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		E10CA7751E2FAC5200E09B99 /* RecordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
+		E10CA7771E2FB4F600E09B99 /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
 		E1A032C51E2EB8D900F4FB7B /* GameStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		E1A032C91E2ECF3700F4FB7B /* Season.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		E1A032CD1E2ED3C300F4FB7B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -122,8 +126,9 @@
 				E10680D51E2E9209006107D5 /* GamesViewController.swift */,
 				E10681011E2E9530006107D5 /* StandingViewController.swift */,
 				E1D1521C1E2F1DBB00AE7A8D /* EditGameViewController.swift */,
-				E1A032CD1E2ED3C300F4FB7B /* TabBarController.swift */,
 				E1D1521A1E2F0BC600AE7A8D /* AddGameViewController.swift */,
+				E10CA7751E2FAC5200E09B99 /* RecordsViewController.swift */,
+				E1A032CD1E2ED3C300F4FB7B /* TabBarController.swift */,
 				E10680D71E2E9209006107D5 /* Main.storyboard */,
 				E1A032CF1E2ED45D00F4FB7B /* Model */,
 				E10680DA1E2E9209006107D5 /* Assets.xcassets */,
@@ -156,9 +161,10 @@
 		E1A032CF1E2ED45D00F4FB7B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E1A032C91E2ECF3700F4FB7B /* Season.swift */,
 				E10681051E2E9680006107D5 /* Game.swift */,
 				E10681071E2E972A006107D5 /* Team.swift */,
-				E1A032C91E2ECF3700F4FB7B /* Season.swift */,
+				E10CA7771E2FB4F600E09B99 /* Records.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -301,10 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E10681081E2E972A006107D5 /* Team.swift in Sources */,
+				E10CA7761E2FAC5200E09B99 /* RecordsViewController.swift in Sources */,
 				E1D1521B1E2F0BC600AE7A8D /* AddGameViewController.swift in Sources */,
 				E1A032CA1E2ECF3700F4FB7B /* Season.swift in Sources */,
 				E1A032CE1E2ED3C300F4FB7B /* TabBarController.swift in Sources */,
 				E10681061E2E9680006107D5 /* Game.swift in Sources */,
+				E10CA7781E2FB4F600E09B99 /* Records.swift in Sources */,
 				E10680D61E2E9209006107D5 /* GamesViewController.swift in Sources */,
 				E10681021E2E9530006107D5 /* StandingViewController.swift in Sources */,
 				E1A032C61E2EB8D900F4FB7B /* GameStore.swift in Sources */,

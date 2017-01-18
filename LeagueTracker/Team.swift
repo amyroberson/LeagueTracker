@@ -8,18 +8,22 @@
 
 import Foundation
 
-class Team: Equatable {
-    let name: String
-    var numberOfWins: Int
+class Team: Hashable {
+    var name: String
+    var record: Record
+    var hashValue: Int {
+        return name.hashValue + record.hashValue
+    }
     
-    init(name: String, numberOfWins: Int){
+    init(name: String, record: Record){
         self.name = name
-        self.numberOfWins = numberOfWins
+        self.record = record
     }
     
     convenience init?(dictionary: [String: Any]){
-        if let name = dictionary["name"] as? String, let numberOfWins = dictionary["numberOfWins"] as? Int {
-            self.init(name: name, numberOfWins: numberOfWins)
+        if let name = dictionary["name"] as? String, let recordDictionary = dictionary["record"] as? [String: Any],
+            let record = Record(dictionary: recordDictionary){
+            self.init(name: name, record: record)
         } else {
             return nil
         }
@@ -28,12 +32,12 @@ class Team: Equatable {
     func toDictionary() -> [String: Any] {
         let dictionary: [String: Any] = [
             "name" : self.name,
-            "numberOfWins" : self.numberOfWins
+            "record" : self.record.toDictionary()
         ]
         return dictionary
     }
     
     static func == (_ lhs: Team, _ rhs: Team) -> Bool {
-        return lhs.name == rhs.name && lhs.numberOfWins == rhs.numberOfWins
+        return lhs.name == rhs.name
     }
 }

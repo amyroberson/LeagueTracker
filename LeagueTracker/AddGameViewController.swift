@@ -19,8 +19,8 @@ class AddGameViewController: UIViewController, UITextFieldDelegate {
         //needs to add to games and save
         if let name1 = team1TextField.text {
             if let name2 = team2TextField.text {
-                let team1 = Team(name: name1, numberOfWins: 0)
-                let team2 = Team(name: name2, numberOfWins: 0)
+                let team1 = Team(name: name1, record: Record(wins: 0, draw: 0, loses: 0))
+                let team2 = Team(name: name2, record: Record(wins: 0, draw: 0, loses: 0))
                 let game = Game(team1: team1, team2: team2, team1Score: 0, team2Score: 0)
                 self.dataSource?.games.append(game)
                 if let vC = self.presentingViewController as? GamesViewController{
