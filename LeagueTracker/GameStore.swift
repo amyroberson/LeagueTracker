@@ -38,23 +38,22 @@ final class GameStore: NSObject {
     }
     
     // not sure about the do catches here
-    func fetchGames() throws -> GameResults {
+    func fetchGames() {
         do {
             let file = try getGamesFilePath()
             if FileManager.default.fileExists(atPath: file.path) {
                 do{
                     let tmp = try readJson(json: try Data(contentsOf: file))
                     games = tmp
-                    
-                    return .success(games)
+                
                 } catch {
-                    return .fail
+                    
+                    print("Error in Fetch")
                 }
             }
         } catch {
-            return .fail
+            print("Error in Fetch")
         }
-        return .success(games)
     }
     
     func saveGames() throws{

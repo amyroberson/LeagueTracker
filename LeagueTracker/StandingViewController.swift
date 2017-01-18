@@ -28,6 +28,11 @@ class StandingViewController: UIViewController, UITableViewDelegate {
         self.tableView.tag = StandingViewController.tableViewTag
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
+    
     
 
 }

@@ -20,10 +20,10 @@
 		E106810A1E2E9F80006107D5 /* TeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10681091E2E9F80006107D5 /* TeamTests.swift */; };
 		E106810C1E2E9F8F006107D5 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E106810B1E2E9F8F006107D5 /* GameTests.swift */; };
 		E1A032C61E2EB8D900F4FB7B /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032C51E2EB8D900F4FB7B /* GameStore.swift */; };
-		E1A032C81E2ECB3600F4FB7B /* GameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032C71E2ECB3600F4FB7B /* GameDataSource.swift */; };
 		E1A032CA1E2ECF3700F4FB7B /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032C91E2ECF3700F4FB7B /* Season.swift */; };
 		E1A032CE1E2ED3C300F4FB7B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032CD1E2ED3C300F4FB7B /* TabBarController.swift */; };
-		E1A032D11E2ED9E100F4FB7B /* StandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A032D01E2ED9E100F4FB7B /* StandingDataSource.swift */; };
+		E1D1521B1E2F0BC600AE7A8D /* AddGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1521A1E2F0BC600AE7A8D /* AddGameViewController.swift */; };
+		E1D1521D1E2F1DBB00AE7A8D /* EditGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D1521C1E2F1DBB00AE7A8D /* EditGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +63,10 @@
 		E10681091E2E9F80006107D5 /* TeamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
 		E106810B1E2E9F8F006107D5 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		E1A032C51E2EB8D900F4FB7B /* GameStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
-		E1A032C71E2ECB3600F4FB7B /* GameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataSource.swift; sourceTree = "<group>"; };
 		E1A032C91E2ECF3700F4FB7B /* Season.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		E1A032CD1E2ED3C300F4FB7B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		E1A032D01E2ED9E100F4FB7B /* StandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingDataSource.swift; sourceTree = "<group>"; };
+		E1D1521A1E2F0BC600AE7A8D /* AddGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameViewController.swift; sourceTree = "<group>"; };
+		E1D1521C1E2F1DBB00AE7A8D /* EditGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,10 +120,10 @@
 				E10680D31E2E9209006107D5 /* AppDelegate.swift */,
 				E1A032C51E2EB8D900F4FB7B /* GameStore.swift */,
 				E10680D51E2E9209006107D5 /* GamesViewController.swift */,
-				E1A032D01E2ED9E100F4FB7B /* StandingDataSource.swift */,
 				E10681011E2E9530006107D5 /* StandingViewController.swift */,
-				E1A032C71E2ECB3600F4FB7B /* GameDataSource.swift */,
+				E1D1521C1E2F1DBB00AE7A8D /* EditGameViewController.swift */,
 				E1A032CD1E2ED3C300F4FB7B /* TabBarController.swift */,
+				E1D1521A1E2F0BC600AE7A8D /* AddGameViewController.swift */,
 				E10680D71E2E9209006107D5 /* Main.storyboard */,
 				E1A032CF1E2ED45D00F4FB7B /* Model */,
 				E10680DA1E2E9209006107D5 /* Assets.xcassets */,
@@ -300,15 +300,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A032D11E2ED9E100F4FB7B /* StandingDataSource.swift in Sources */,
 				E10681081E2E972A006107D5 /* Team.swift in Sources */,
+				E1D1521B1E2F0BC600AE7A8D /* AddGameViewController.swift in Sources */,
 				E1A032CA1E2ECF3700F4FB7B /* Season.swift in Sources */,
 				E1A032CE1E2ED3C300F4FB7B /* TabBarController.swift in Sources */,
 				E10681061E2E9680006107D5 /* Game.swift in Sources */,
 				E10680D61E2E9209006107D5 /* GamesViewController.swift in Sources */,
-				E1A032C81E2ECB3600F4FB7B /* GameDataSource.swift in Sources */,
 				E10681021E2E9530006107D5 /* StandingViewController.swift in Sources */,
 				E1A032C61E2EB8D900F4FB7B /* GameStore.swift in Sources */,
+				E1D1521D1E2F1DBB00AE7A8D /* EditGameViewController.swift in Sources */,
 				E10680D41E2E9209006107D5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

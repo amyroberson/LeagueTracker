@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController, GameDataSourceDelegate, StandingDataSourceDelegate{
+class TabBarController: UITabBarController{
 
     var dataSource = GameStore()
     let storyBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -19,6 +19,7 @@ class TabBarController: UITabBarController, GameDataSourceDelegate, StandingData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource.fetchGames()
         for item in self.viewControllers!{
             if let controller = item as? UINavigationController{
                 if let viewController = controller.topViewController as? GamesViewController{
