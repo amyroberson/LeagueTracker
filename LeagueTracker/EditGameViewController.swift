@@ -14,6 +14,7 @@ import UIKit
 class EditGameViewController: UIViewController, UITextFieldDelegate{
     
     var game: Game?
+    var gameIndex: Int?
     var dataSource: GameStore?
     
     @IBOutlet weak var team1TextField: UITextField!
@@ -28,11 +29,14 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
         if let name1 = team1TextField.text,
             let name2 = team2TextField.text,
             let name1Score: Int = Int((team1ScoreTextField.text)!),
-            let name2Score: Int = Int((team2ScoreTextField.text)!) {
-            game?.team1.name = name1
-            game?.team2.name = name2
-            game?.team1Score = name1Score
-            game?.team2Score = name2Score
+            let name2Score: Int = Int((team2ScoreTextField.text)!),
+            let thisGame = game,
+            let index = gameIndex{
+            thisGame.team1.name = name1
+            thisGame.team2.name = name2
+            thisGame.team1Score = name1Score
+            thisGame.team2Score = name2Score
+            dataSource?.games[index] = thisGame
             do{
                 try dataSource?.saveGames()
             } catch {

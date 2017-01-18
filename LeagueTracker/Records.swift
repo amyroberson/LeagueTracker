@@ -34,7 +34,13 @@ struct Record: Hashable {
     }
     
     static func > (_ lhs: Record, _ rhs: Record) -> Bool {
-        return lhs.wins > rhs.wins && lhs.draw > rhs.draw && lhs.loses < rhs.loses
+        if lhs.wins > rhs.wins{
+            return true
+        } else if lhs.wins == rhs.wins && lhs.loses <= rhs.loses{
+            return lhs.draw >= rhs.draw
+        } else {
+            return false
+        }
     }
     
     static func == (_ lhs: Record, _ rhs: Record) -> Bool {

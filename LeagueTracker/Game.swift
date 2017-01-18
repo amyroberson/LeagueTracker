@@ -12,8 +12,14 @@ import Foundation
 class Game: Equatable {
     var team1: Team
     var team2: Team
-    var team1Score: Int
-    var team2Score: Int
+    var team1Score: Int{
+        didSet{ print(self.winner?.name ?? "no winner")}
+    }
+    
+    var team2Score: Int{
+        didSet{ print(self.winner?.name ?? "no winner")}
+    }
+    
     var winner: Team? {
         if team1Score == team2Score {
             team1.record.draw += 1

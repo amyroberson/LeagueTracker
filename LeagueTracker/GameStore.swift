@@ -93,7 +93,7 @@ final class GameStore: NSObject {
     
 }
 
-extension GameStore: UITableViewDataSource {
+/* extension GameStore: UITableViewDataSource {
     var teams: [Team] {
         return season.sortByRank()
     }
@@ -131,4 +131,4 @@ extension GameStore: UITableViewDataSource {
         
         return UITableViewCell()
     }
-}
+} */

@@ -11,12 +11,10 @@ import UIKit
 
 class AddGameViewController: UIViewController, UITextFieldDelegate {
     var dataSource: GameStore?
-    @IBAction func cancel(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    
     
     @IBAction func editButton(_ sender: UIButton) {
-        //needs to add to games and save
+        
         if let name1 = team1TextField.text {
             if let name2 = team2TextField.text {
                 let team1 = Team(name: name1, record: Record(wins: 0, draw: 0, loses: 0))

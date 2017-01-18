@@ -23,9 +23,9 @@ class TabBarController: UITabBarController{
         for item in self.viewControllers!{
             if let controller = item as? UINavigationController{
                 if let viewController = controller.topViewController as? GamesViewController{
-                    viewController.tableView.dataSource = dataSource
+                    viewController.gameStore = dataSource
                 } else if let viewController = controller.topViewController as? StandingViewController{
-                    viewController.tableView.dataSource = dataSource
+                    viewController.gameStore = dataSource
                 }
             }
         }

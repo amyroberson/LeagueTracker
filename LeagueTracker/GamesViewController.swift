@@ -10,19 +10,22 @@ import UIKit
 
 
 
-class GamesViewController: UIViewController, UITableViewDelegate {
-
+class GamesViewController: UITableViewController{
     
+    var gameStore: GameStore?
+    var games: [Game] {
+        if let games = gameStore?.games{
+            return games
+        } else {
+            return []
+        }
+    }
     
     @IBAction func addGameButton(_ sender: UIBarButtonItem) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let addGameVC: AddGameViewController = storyBoard.instantiateViewController(withIdentifier: "AddGame") as! AddGameViewController
-        addGameVC.dataSource = self.tableView.dataSource as! GameStore?
-        self.present(addGameVC, animated: true, completion: nil)
-       
-    }
-    var tableView: UITableView{
-        return view as! UITableView
+        addGameVC.dataSource = self.gameStore
+        self.showDetailViewController(addGameVC, sender: nil)
     }
     static let tableViewTag = 1
     
@@ -39,15 +42,42 @@ class GamesViewController: UIViewController, UITableViewDelegate {
         super.viewDidAppear(animated)
         tableView.reloadData()
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let editGameVC: EditGameViewController = storyBoard.instantiateViewController(withIdentifier: "EditGame") as! EditGameViewController
-        editGameVC.dataSource = tableView.dataSource as! GameStore?
+        editGameVC.dataSource = gameStore
         editGameVC.game = editGameVC.dataSource?.games[indexPath.row]
-        self.present(editGameVC, animated: true, completion: nil)
+        editGameVC.gameIndex = indexPath.row
+        self.showDetailViewController(editGameVC, sender: nil)
     }
+}
 
-
+extension GamesViewController {
+    
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return games.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
+        
+        let game = games[indexPath.row]
+        
+        cell.textLabel?.text = "\(game.team1.name) vs. \(game.team2.name)"
+        cell.detailTextLabel?.text = "\(game.team1Score) - \(game.team2Score)"
+        
+        
+        return cell
+        
+    }
+    
 }
 
