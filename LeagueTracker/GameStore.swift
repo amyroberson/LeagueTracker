@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum GameResults: Error{
     case success([Game])
@@ -19,9 +20,9 @@ enum FileError: Error{
     case failedToRead
 }
 
-final class GameStore {
+final class GameStore: NSObject {
     
-    var games: [Game] = []
+    var games: [Game] = [Game(team1: Team(name:"Jets", numberOfWins:3), team2: Team(name:"Tigers", numberOfWins: 2), team1Score: 4, team2Score: 7), Game(team1: Team(name:"Cats", numberOfWins:3), team2: Team(name:"Raiders", numberOfWins: 2), team1Score: 4, team2Score: 7)]
     var season: Season {
         return Season(games: games)
     }
@@ -90,4 +91,44 @@ final class GameStore {
         }
     }
     
+}
+
+extension GameStore: UITableViewDataSource {
+    var teams: [Team] {
+        return season.sortByRank()
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView.tag == GamesViewController.tableViewTag {
+            return games.count
+        } else if tableView.tag == StandingViewController.tableViewTag {
+            return teams.count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView.tag == GamesViewController.tableViewTag {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
+            
+            let game = games[indexPath.row]
+            
+            cell.textLabel?.text = "\(game.team1.name) vs. \(game.team2.name)"
+            cell.detailTextLabel?.text = "\(game.team1Score) - \(game.team2Score)"
+            
+            
+            return cell
+        } else if tableView.tag == StandingViewController.tableViewTag {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StandingCell", for: indexPath)
+            cell.textLabel?.text = "\(teams[indexPath.row].name)"
+            cell.detailTextLabel?.text = "Number Of Wins: \(teams[indexPath.row].numberOfWins)"
+            return cell
+        }
+        
+        
+        return UITableViewCell()
+    }
 }

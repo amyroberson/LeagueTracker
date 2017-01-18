@@ -8,24 +8,24 @@
 
 import UIKit
 
-protocol GamesViewControllerDelegate: NSObjectProtocol{
-    
-}
+
 
 class GamesViewController: UIViewController, UITableViewDelegate {
 
-    var delegate: GamesViewControllerDelegate?
-    var tableView: UITableView {
+    
+    var tableView: UITableView{
         return view as! UITableView
     }
+    static let tableViewTag = 1
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dataSource = self.delegate
-        
         title = "Games"
         tableView.delegate = self
-        tableView.dataSource = dataSource.gameData
+        self.tableView.tag = GamesViewController.tableViewTag
+        
+        
     }
 
 

@@ -9,17 +9,23 @@
 import Foundation
 import UIKit
 
-protocol StandingViewControllerDelegate: NSObjectProtocol{
-    
-}
 
 class StandingViewController: UIViewController, UITableViewDelegate {
     
-    var delegate: StandingViewControllerDelegate?
+    
+    
+    static let tableViewTag = 2
+    
+    var tableView: UITableView{
+        return view as! UITableView
+    }
+      
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Standings"
+        tableView.delegate = self
+        self.tableView.tag = StandingViewController.tableViewTag
     }
     
     

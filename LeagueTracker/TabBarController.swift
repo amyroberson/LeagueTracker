@@ -8,22 +8,26 @@
 
 import UIKit
 
-class TabBarController: UITabBarController, GameDataSourceDelegate, StandingDataSourceDelegate, GamesViewControllerDelegate, StandingViewControllerDelegate {
+class TabBarController: UITabBarController, GameDataSourceDelegate, StandingDataSourceDelegate{
 
-    let dataSource = GameStore()
-    let gameData = GameDataSource()
-    let standingData = StandingDataSource()
-    let gamesViewController = GamesViewController()
+    var dataSource = GameStore()
+    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    
     let standingViewController = StandingViewController()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gameData.delegate = self
-        standingData.delegate = self
-        gamesViewController.delegate = self
-        standingViewController.delegate = self
+        for item in self.viewControllers!{
+            if let controller = item as? UINavigationController{
+                if let viewController = controller.topViewController as? GamesViewController{
+                    viewController.tableView.dataSource = dataSource
+                } else if let viewController = controller.topViewController as? StandingViewController{
+                    viewController.tableView.dataSource = dataSource
+                }
+            }
+        }
     }
 
     
