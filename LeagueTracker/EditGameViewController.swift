@@ -21,6 +21,7 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var team1ScoreTextField: UITextField!
     @IBOutlet weak var team2TextField: UITextField!
     @IBOutlet weak var team2ScoreTextField: UITextField!
+    @IBOutlet weak var doneButton: UIButton!
     
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -42,7 +43,11 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
             } catch {
                 print("Failed to save")
             }
-            //dismiss self
+            let arrayCount: Int = Int((navigationController?.viewControllers.count)!)
+            if arrayCount >= 2 {
+                let uiVC: UIViewController = (navigationController?.viewControllers[arrayCount - 2])!
+                let _ = self.navigationController?.popToViewController(uiVC, animated: true)
+            }
         }
     }
     
@@ -65,6 +70,7 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if textField.text?.isEmpty == false{
             textField.resignFirstResponder()
+            
             return true
         }
         return false

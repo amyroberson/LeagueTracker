@@ -32,7 +32,12 @@ class AddGameViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        self.dismiss(animated: true, completion: nil)
+        let arrayCount: Int = Int((navigationController?.viewControllers.count)!)
+        if arrayCount >= 2 {
+            let uiVC: UIViewController = (navigationController?.viewControllers[arrayCount - 2])!
+            let _ = self.navigationController?.popToViewController(uiVC, animated: true)
+        }
+        
     }
     @IBOutlet weak var team1TextField: UITextField!
     @IBOutlet weak var team2TextField: UITextField!
