@@ -42,8 +42,7 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
             } catch {
                 print("Failed to save")
             }
-            self.dismiss(animated: true, completion: nil)
-            
+            //dismiss self
         }
     }
     

@@ -25,7 +25,7 @@ class GamesViewController: UITableViewController{
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let addGameVC: AddGameViewController = storyBoard.instantiateViewController(withIdentifier: "AddGame") as! AddGameViewController
         addGameVC.dataSource = self.gameStore
-        self.showDetailViewController(addGameVC, sender: nil)
+        self.show(addGameVC, sender: nil)
     }
     static let tableViewTag = 1
     
@@ -45,11 +45,12 @@ class GamesViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let editGameVC: EditGameViewController = storyBoard.instantiateViewController(withIdentifier: "EditGame") as! EditGameViewController
-        editGameVC.dataSource = gameStore
-        editGameVC.game = editGameVC.dataSource?.games[indexPath.row]
-        editGameVC.gameIndex = indexPath.row
-        self.showDetailViewController(editGameVC, sender: nil)
+        let gameDetailVC = storyBoard.instantiateViewController(withIdentifier: "GameDetail") as! GameDetailViewController
+        gameDetailVC.gameStore = gameStore
+        gameDetailVC.game = gameDetailVC.gameStore?.games[indexPath.row]
+        gameDetailVC.gameIndex = indexPath.row
+        self.show(gameDetailVC, sender: nil)
+        
     }
 }
 

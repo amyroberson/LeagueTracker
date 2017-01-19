@@ -23,6 +23,13 @@ class GameTests: XCTestCase {
         ]
         let game2 = Game(dictionary: dictionary)
         XCTAssertEqual(game2, game1)
+    }
+    
+    func testWinner(){
+        let team1 = Team(name: "Tigers", record: Record(wins: 1, draw: 1, loses: 1))
+        let team2 = Team(name: "Raiders", record: Record(wins: 2, draw: 1, loses: 1))
+        let game1 = Game(team1: team1, team2: team2, team1Score: 14, team2Score: 7)
+        XCTAssertEqual(game1.winner, team1)
         
     }
     
