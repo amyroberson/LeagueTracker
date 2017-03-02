@@ -33,6 +33,7 @@ class GamesViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Games"
+        
         tableView.delegate = self
         self.tableView.tag = GamesViewController.tableViewTag
         
