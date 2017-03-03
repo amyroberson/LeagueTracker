@@ -22,6 +22,7 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var team2TextField: UITextField!
     @IBOutlet weak var team2ScoreTextField: UITextField!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -37,16 +38,21 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
             thisGame.team2.name = name2
             thisGame.team1Score = name1Score
             thisGame.team2Score = name2Score
-            dataSource?.games[index] = thisGame
-            do{
-                try dataSource?.saveGames()
-            } catch {
-                print("Failed to save")
-            }
-            let arrayCount: Int = Int((navigationController?.viewControllers.count)!)
-            if arrayCount >= 2 {
-                let uiVC: UIViewController = (navigationController?.viewControllers[arrayCount - 2])!
-                let _ = self.navigationController?.popToViewController(uiVC, animated: true)
+            dataSource?.season.games[index] = thisGame
+            if name1 != name2 {
+                do{
+                    try dataSource?.saveGames()
+                } catch {
+                    print("Failed to save")
+                }
+                errorLabel.isHidden = true
+                let arrayCount: Int = Int((navigationController?.viewControllers.count)!)
+                if arrayCount >= 2 {
+                    let uiVC: UIViewController = (navigationController?.viewControllers[arrayCount - 2])!
+                    let _ = self.navigationController?.popToViewController(uiVC, animated: true)
+                }
+            } else {
+                errorLabel.isHidden = false
             }
         }
     }
@@ -60,6 +66,7 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
         team2ScoreTextField.delegate = self
         team1TextField.text = game?.team1.name
         team2TextField.text = game?.team2.name
+        errorLabel.isHidden = true
         if let editingGame = game {
             team1ScoreTextField.text = "\(editingGame.team1Score)"
             team2ScoreTextField.text = "\(editingGame.team2Score)"
@@ -68,19 +75,12 @@ class EditGameViewController: UIViewController, UITextFieldDelegate{
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text?.isEmpty == false{
-            textField.resignFirstResponder()
-            
-            return true
-        }
-        return false
+        textField.resignFirstResponder()
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.text?.isEmpty == false{
-            textField.resignFirstResponder()
-            return true
-        }
-        return false
+        textField.resignFirstResponder()
+        return true
     }
 }

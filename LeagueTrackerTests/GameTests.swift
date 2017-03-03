@@ -12,8 +12,8 @@ import XCTest
 class GameTests: XCTestCase {
     
     func testINITS(){
-        let team1 = Team(name: "Tigers", record: Record(wins: 1, draw: 1, loses: 1))
-        let team2 = Team(name: "Raiders", record: Record(wins: 2, draw: 1, loses: 1))
+        let team1 = Team(name: "Tigers")
+        let team2 = Team(name: "Raiders")
         let game1 = Game(team1: team1, team2: team2, team1Score: 14, team2Score: 7)
         let dictionary: [String: Any] = [
             "team1" : team1.toDictionary(),
@@ -26,8 +26,8 @@ class GameTests: XCTestCase {
     }
     
     func testWinner(){
-        let team1 = Team(name: "Tigers", record: Record(wins: 1, draw: 1, loses: 1))
-        let team2 = Team(name: "Raiders", record: Record(wins: 2, draw: 1, loses: 1))
+        let team1 = Team(name: "Tigers")
+        let team2 = Team(name: "Raiders")
         let game1 = Game(team1: team1, team2: team2, team1Score: 14, team2Score: 7)
         XCTAssertEqual(game1.winner, team1)
         

@@ -10,7 +10,7 @@ import UIKit
 
 class TabBarController: UITabBarController{
 
-    var dataSource = GameStore()
+    var dataSource = GameStore(games: [])
     let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
     let standingViewController = StandingViewController()

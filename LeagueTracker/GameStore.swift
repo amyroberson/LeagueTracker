@@ -22,10 +22,20 @@ enum FileError: Error{
 
 final class GameStore: NSObject {
     
-    var games: [Game] = []
-    //[Game(team1: Team(name:"Jets", numberOfWins:3), team2: Team(name:"Tigers", numberOfWins: 2), team1Score: 4, team2Score: 7), Game(team1: Team(name:"Cats", numberOfWins:3), team2: Team(name:"Raiders", numberOfWins: 2), team1Score: 4, team2Score: 7)]
-    var season: Season {
-        return Season(games: games)
+    var games: [Game] = []{
+        didSet{
+            for game in games{
+                if !season.games.contains(game){
+                    season.games.append(game)
+                }
+            }
+        }
+    }
+    var season: Season
+    
+    init(games: [Game]){
+        self.games = games
+        self.season = Season(games: games)
     }
     
     func getGamesFilePath() throws -> URL {
@@ -37,9 +47,7 @@ final class GameStore: NSObject {
         supportFile = supportFile.appendingPathComponent("Game")
         return supportFile
     }
-    
-    // not sure about the do catches here
-    func fetchGames() {
+        func fetchGames() {
         do {
             let file = try getGamesFilePath()
             if FileManager.default.fileExists(atPath: file.path) {
@@ -48,7 +56,6 @@ final class GameStore: NSObject {
                     games = tmp
                 
                 } catch {
-                    
                     print("Error in Fetch")
                 }
             }
@@ -69,7 +76,7 @@ final class GameStore: NSObject {
     }
     
     func toJson() throws -> Data{
-        let jsonRepresentation = try JSONSerialization.data(withJSONObject: games.map{ $0.toDictionary() } , options: [])
+        let jsonRepresentation = try JSONSerialization.data(withJSONObject: season.games.map{ $0.toDictionary() } , options: [])
         return jsonRepresentation
     }
     
@@ -87,48 +94,9 @@ final class GameStore: NSObject {
             
         } catch {
             throw FileError.failedToRead
-            // so once this is thrown what happens when running my code
         }
     }
     
 }
 
-/* extension GameStore: UITableViewDataSource {
-    var teams: [Team] {
-        return season.sortByRank()
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == GamesViewController.tableViewTag {
-            return games.count
-        } else if tableView.tag == StandingViewController.tableViewTag {
-            return teams.count
-        }
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView.tag == GamesViewController.tableViewTag {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
-            
-            let game = games[indexPath.row]
-            
-            cell.textLabel?.text = "\(game.team1.name) vs. \(game.team2.name)"
-            cell.detailTextLabel?.text = "\(game.team1Score) - \(game.team2Score)"
-            
-            
-            return cell
-        } else if tableView.tag == StandingViewController.tableViewTag {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "StandingCell", for: indexPath)
-            cell.textLabel?.text = "\(teams[indexPath.row].name)"
-            cell.detailTextLabel?.text = "Number Of Wins: \(teams[indexPath.row].record.wins)"
-            return cell
-        }
-        
-        
-        return UITableViewCell()
-    }
-} */
+

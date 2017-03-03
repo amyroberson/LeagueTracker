@@ -21,26 +21,10 @@ class Season: Equatable {
         return teams
     }
     
-    var records: [Team: Record] {
-        var records: [Team : Record] = [:]
-        for team in self.teams {
-            records[team] = team.record
-        }
-        return records
-    }
-    
     init(games: [Game]) {
         self.games = games
     }
-    
-//    convenience init?(dictionary: [String: Any]) {
-//        if let gameDictionaries = dictionary["games"] as? [[String: Any]],
-//            let games = { () -> [Game]? in gameDictionaries.flatMap{Game(dictionary: $0)} }(), games.count == gameDictionaries.count {
-//            self.init(games: games)
-//        } else {
-//            return nil
-//        }
-//    }
+
     
     convenience init?(dictionary: [String: Any]) {
         if let gameDictionaries = dictionary["games"] as? [[String: Any]]{
@@ -53,11 +37,35 @@ class Season: Equatable {
         return nil
     }
     
-    func sortByRank() -> [Team] { 
-        let teams = self.teams
-        let rankedTeams = teams.sorted(by: {$0.record > $1.record})
-        return rankedTeams
+    func setTeamRecords(games: [Game]){
+        resetRecords()
+        
+        for game in games{
+            if game.winner != nil {
+                game.winner?.wins += 1
+                game.loser?.losses += 1
+            } else {
+                game.team1.draws += 1
+                game.team2.draws += 1
+            }
+        }
     }
+    
+    func resetRecords(){
+        for team in teams{
+            team.wins = 0
+            team.losses = 0
+            team.draws = 0
+        }
+    }
+    
+    
+    func sortByRank() -> [Team] {
+        setTeamRecords(games: self.games)
+        var sortedTeams: [Team] = []
+        sortedTeams = teams.sorted(by: ({$0.record > $1.record}))
+        return sortedTeams
+     }
     
     func toDictionary() -> [String : Any] {
         let dictionary: [String : Any] = [

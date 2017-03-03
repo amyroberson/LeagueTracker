@@ -13,13 +13,9 @@ import UIKit
 class StandingViewController: UITableViewController {
     
     var gameStore: GameStore?
-    var teams: [Team] {
-        if let season = gameStore?.season{
-            return season.sortByRank()
-        } else {
-            return []
-        }
-    }
+    var teams: [Team] = []
+    
+    
     
     static let tableViewTag = 2
     
@@ -29,6 +25,14 @@ class StandingViewController: UITableViewController {
         title = "Standings"
         tableView.delegate = self
         self.tableView.tag = StandingViewController.tableViewTag
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let season = gameStore?.season{
+            teams = season.sortByRank()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +56,7 @@ extension StandingViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "StandingCell", for: indexPath)
         cell.textLabel?.text = "\(teams[indexPath.row].name)"
-        cell.detailTextLabel?.text = "Number Of Wins: \(teams[indexPath.row].record.wins)"
+        cell.detailTextLabel?.text = "Number Of Wins: \(teams[indexPath.row].wins)"
         return cell
     }
     

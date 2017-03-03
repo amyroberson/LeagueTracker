@@ -12,7 +12,7 @@ import XCTest
 class TeamTests: XCTestCase {
     
     func testINITS(){
-        let team1 = Team(name: "Tigers", record: Record(wins: 1, draw: 1, loses: 1))
+        let team1 = Team(name: "Tigers")
         let dictionary = team1.toDictionary()
         let team2 = Team(dictionary: dictionary)
         XCTAssertEqual(team1, team2!)

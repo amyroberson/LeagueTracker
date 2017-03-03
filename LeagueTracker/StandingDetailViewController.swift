@@ -22,9 +22,9 @@ class StandingDetailViewController: UIViewController{
         super.viewDidLoad()
         if let team = team{
             teamNameLabel.text = team.name
-            gamesWonLabel.text = "Games Won: \(team.record.wins)"
-            gamesTiedLabel.text = "Games Tied: \(team.record.draw)"
-            gamesLostLabel.text = "Games Lost: \(team.record.loses)"
+            gamesWonLabel.text = "Games Won: \(team.wins)"
+            gamesTiedLabel.text = "Games Tied: \(team.draws)"
+            gamesLostLabel.text = "Games Lost: \(team.losses)"
         }
     }
 }

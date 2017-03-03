@@ -10,29 +10,35 @@ import Foundation
 
 class Team: Hashable {
     var name: String
-    var record: Record
+    
+    var wins = 0
+    var draws = 0
+    var losses = 0
     var hashValue: Int {
-        return name.hashValue + record.hashValue
+        return name.hashValue
+    }
+    var record: (Int,Int,Int) {
+        return (wins,draws,losses)
     }
     
-    init(name: String, record: Record){
+    
+    init(name: String){
         self.name = name
-        self.record = record
     }
     
     convenience init?(dictionary: [String: Any]){
-        if let name = dictionary["name"] as? String, let recordDictionary = dictionary["record"] as? [String: Any],
-            let record = Record(dictionary: recordDictionary){
-            self.init(name: name, record: record)
+        if let name = dictionary["name"] as? String{
+            self.init(name: name)
         } else {
             return nil
         }
     }
     
     func toDictionary() -> [String: Any] {
+        
+        
         let dictionary: [String: Any] = [
             "name" : self.name,
-            "record" : self.record.toDictionary()
         ]
         return dictionary
     }

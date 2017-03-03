@@ -13,28 +13,18 @@ class Game: Equatable {
     var team1: Team
     var team2: Team
     var team1Score: Int{
-        didSet{ print(self.winner?.name ?? "no winner")}
-    }
-    
-    var team2Score: Int{
-        didSet{ print(self.winner?.name ?? "no winner")}
-    }
-    
-    var winner: Team? {
-        if team1Score == team2Score {
-            team1.record.draw += 1
-            team2.record.draw += 1
-            return nil
-        } else if team1Score > team2Score {
-            team1.record.wins += 1
-            team2.record.loses += 1
-            return team1
-        } else {
-            team2.record.wins += 1
-            team1.record.loses += 1
-            return team2
+        didSet{
+            setWinner()
         }
     }
+    var team2Score: Int{
+        didSet{
+            setWinner()
+        }
+    }
+    
+    var winner: Team? = nil
+    var loser: Team? = nil
     
     init(team1: Team, team2 : Team, team1Score: Int, team2Score: Int){
         guard team1 != team2,
@@ -46,6 +36,7 @@ class Game: Equatable {
         self.team2 = team2
         self.team1Score = team1Score
         self.team2Score = team2Score
+        setWinner()
     }
     
     convenience init?(dictionary: [String: Any]){
@@ -62,6 +53,18 @@ class Game: Equatable {
         
     }
     
+    func setWinner(){
+        if team1Score > team2Score{
+            winner = team1
+            loser = team2
+        } else if team1Score < team2Score{
+            winner = team2
+            loser = team1
+        } else {
+            winner = nil
+            loser = nil
+        }
+    }
     
     
     func toDictionary() -> [String: Any] {

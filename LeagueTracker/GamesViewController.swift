@@ -14,7 +14,7 @@ class GamesViewController: UITableViewController{
     
     var gameStore: GameStore?
     var games: [Game] {
-        if let games = gameStore?.games{
+        if let games = gameStore?.season.games{
             return games
         } else {
             return []
@@ -39,7 +39,7 @@ class GamesViewController: UITableViewController{
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadData()
     }
@@ -48,7 +48,7 @@ class GamesViewController: UITableViewController{
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let gameDetailVC = storyBoard.instantiateViewController(withIdentifier: "GameDetail") as! GameDetailViewController
         gameDetailVC.gameStore = gameStore
-        gameDetailVC.game = gameDetailVC.gameStore?.games[indexPath.row]
+        gameDetailVC.game = gameDetailVC.gameStore?.season.games[indexPath.row]
         gameDetailVC.gameIndex = indexPath.row
         self.show(gameDetailVC, sender: nil)
         
